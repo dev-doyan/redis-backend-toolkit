@@ -1,0 +1,25 @@
+{
+  "name": "redis-backend-toolkit",
+  "version": "1.0.0",
+  "description": "Exploring Redis through practical Node.js backend implementations — caching, rate limiting, and task queues.",
+  "homepage": "https://github.com/dev-doyan/redis-backend-toolkit#readme",
+  "bugs": {
+    "url": "https://github.com/dev-doyan/redis-backend-toolkit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-doyan/redis-backend-toolkit.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
