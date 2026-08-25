@@ -65,6 +65,30 @@ res.json({mssg:"added successfully",user})
  })
  
 
+
+
+ //otp generation and storage in redis 
+ app.post("/send-otp",async(req,res)=>{
+    const {email}=req.body;
+    const otp =  Math.floor(1000 + Math.random() * 9000);
+    await redis.set(`otp:${email}`,otp.toString(),'EX',50);
+
+    return res.json({otp})
+ })
+app.post("/verify-otp",async(req,res)=>{
+      const { email, otp } = req.body;
+      const cachedotp=await redis.get(`otp:${email}`);
+      if(!cachedotp){
+        return res.json({mssg:"either otp not found or expired"})
+      }
+
+      if(cachedotp != otp) {
+        return res.status(400).json({ "message": "incorrect otp" })
+    }
+     await redis.del(`otp:${email}`);
+    return res.json({mssg:"verified "})
+
+})
  
 
 app.listen(port,()=>{
