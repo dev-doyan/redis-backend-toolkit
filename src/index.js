@@ -10,7 +10,7 @@ dotenv.config()
 
  app.use(express.json());
 
- const redis = new Redis(process.env.REDIS_URL);
+ export const redis = new Redis(process.env.REDIS_URL);
 
  //creating user
 
