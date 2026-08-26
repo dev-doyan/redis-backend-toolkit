@@ -2,6 +2,7 @@ import express, { json } from "express"
 import dbconnection from "./db.js"
 import User from "./model.js"
 import Redis from "ioredis"
+import ratelimitter from "./middlewear/ratelimitter.js"
 const app=express();
 import dotenv from "dotenv"
 dotenv.config()
@@ -33,7 +34,7 @@ res.json({mssg:"added successfully",user})
 
  //get
 
- app.get("/get",async(req,res)=>{
+ app.get("/get",ratelimitter,async(req,res)=>{
     try {
         const user = await User.find();            //without redis =67ms
         res.json({user})
