@@ -3,6 +3,7 @@ import dbconnection from "./db.js"
 import User from "./model.js"
 import Redis from "ioredis"
 import ratelimitter from "./middlewear/ratelimitter.js"
+import sendemail from "./sendemail.js"
 const app=express();
 import dotenv from "dotenv"
 dotenv.config()
@@ -23,6 +24,9 @@ const user = await User.create({
     email,
     password,
 });
+
+ await sendemail(email);
+
 res.json({mssg:"added successfully",user})
 } catch (error) {
     res.json({mssg:error.message
