@@ -3,9 +3,10 @@ import dbconnection from "./db.js"
 import User from "./model.js"
 import Redis from "ioredis"
 import ratelimitter from "./middlewear/ratelimitter.js"
-import sendemail from "./sendemail.js"
+
 const app=express();
 import dotenv from "dotenv"
+import emailqueue from "./queue.js"
 dotenv.config()
  const port=process.env.PORT
 
@@ -25,7 +26,7 @@ const user = await User.create({
     password,
 });
 
- await sendemail(email);
+ await emailqueue.add('send-email',{email}) //have ro pass aname and  data to be used 
 
 res.json({mssg:"added successfully",user})
 } catch (error) {
