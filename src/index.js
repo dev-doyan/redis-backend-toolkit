@@ -15,6 +15,12 @@ dotenv.config()
 
  export const redis = new Redis(process.env.REDIS_URL);
 
+
+ //test api
+ app.get("/",(req,res)=>{
+    res.json({message:"yup it is working on 5000"})
+ })
+
  //creating user
 
  app.post("/add",async(req,res)=>{
