@@ -18,7 +18,7 @@ dotenv.config()
 
  //test api
  app.get("/",(req,res)=>{
-    res.json({message:"yup it is working on 5000"})
+    res.json({message:`sever is ${process.env.SERVER_NAME}`})
  })
 
  //creating user

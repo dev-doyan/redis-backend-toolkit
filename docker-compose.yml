@@ -15,9 +15,35 @@ services:
     build: ./
     env_file:
       - ./.env
+    environment:
+      - SERVER_NAME=1st server  
     
     ports:
       - 5001:5000
 
 
   
+  sever2:
+    build: ./
+    env_file:
+      - ./.env
+    environment:
+      - SERVER_NAME=2nd server  
+    
+    ports:
+      - 5002:5000
+
+
+  sever3:
+    build: ./
+    env_file:
+      - ./.env
+    environment:
+      - SERVER_NAME=3rd server  
+    
+    ports:
+      - 5003:5000
+
+
+  
+
